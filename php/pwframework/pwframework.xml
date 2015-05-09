@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<extension type="plugin" version="1.6" method="upgrade" group="system">
+    <name>System - pwframework</name>
+    <creationDate>November 2010</creationDate>
+    <author>Alex Jonk</author>
+    <authorEmail>alex.jonk@pageworks.nl</authorEmail>
+    <authorUrl>http://www.pageworks.nl</authorUrl>
+    <copyright>Copyright , pageworks</copyright>
+    <license>GNU/GPL v3</license>
+    <!--  The version is injected on build -->
+    <version>@@@</version>
+    <releaseDate>2013/01/17 10:06:24</releaseDate>
+    <releaseType>First public release!</releaseType>
+    <!-- The description is optional and defaults to the name -->
+    <description>For more information about the pwframework, see wiki.pageworks.nl</description>
+	
+    <scriptfile>script.php</scriptfile>
+    <updateservers>
+        <server type="extension" name="pwframework" priority="1">http://10.49.23.197/update/pwframework_update.xml</server>
+    </updateservers>
+
+	
+    <!-- Site Main File Copy Section -->
+    <files>
+        <folder>css</folder>		
+        <folder>deprecated.classes</folder>		
+        <folder>js</folder>		
+        <folder>language</folder>		
+        <folder>lib</folder>		
+        <filename plugin="pwframework" >index.html</filename>
+        <filename plugin="pwframework" >pwframework.php</filename>
+        
+    </files>	
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.plg_system_pwframework.ini</language>
+        <language tag="nl-NL">language/nl-NL/nl-NL.plg_system_pwframework.ini</language>
+    </languages>
+    <config>
+        <fields name="params">           
+        </fields>		
+    </config>
+</extension>

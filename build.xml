@@ -1,0 +1,84 @@
+<project name="healthcheck" default="dist" basedir=".">
+    <description>
+        Build update file healthcheck
+    </description>
+	  
+	<target name="init" depends="increment">
+		<!-- Create the time stamp -->
+                <property file="build.properties" />
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>		
+	</target>
+
+	<target name="compile" depends="init"  description="compile the source " >
+				
+		<copy todir="${build}/app">
+			<fileset dir="${src}/app"/>
+		</copy>
+
+                <!-- remmove the config.js frome the package    -->
+                <delete file="${build}/app/config.js"/>
+                 
+                <copy todir="${build}/css">
+			<fileset dir="${src}/css"/>
+		</copy>
+                <copy todir="${build}/css">
+			<fileset dir="${src}/css"/>
+		</copy>
+                <copy todir="${build}/fonts">
+			<fileset dir="${src}/fonts"/>
+		</copy>
+                <copy todir="${build}/images">
+			<fileset dir="${src}/images"/>
+		</copy>
+                <copy todir="${build}/js">
+			<fileset dir="${src}/js"/>
+		</copy>
+                <copy todir="${build}/pwframework">
+			<fileset dir="${src}/pwframework"/>
+		</copy>
+                
+                
+                <copy file="${src}/ajax.php" todir="${build}" />
+                <copy file="${src}/classes.healthcheck.php" todir="${build}" />
+                <copy file="${src}/database.php" todir="${build}" />
+                <copy file="${src}/deamon.php" todir="${build}" />
+                <copy file="${src}/index.html" todir="${build}" />
+                
+                
+                   <!-- file manipulations -->
+                <replace file="${build}/index.html" token="@@@" value="${version.major}.${version.minor}.${version.revision}"/>
+                
+		                
+		<!-- zipping -->
+		
+		<zip destfile="${dist}/healthcheck_${version.major}.${version.minor}.${version.revision}.zip"
+			basedir="${build}"	/>
+		
+		<antcall target="clean" />
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution" >
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist}"/>
+    
+	</target>
+
+	<target name="clean" description="clean up" >
+		<!-- Delete the ${build} and ${dist} directory trees 
+		<delete dir="${dist}"/>
+		-->
+		<delete dir="${build}"/>
+	</target>
+	
+	<target name="increment"> 
+            <propertyfile file="build.properties"> 
+                <entry key="version.revision" type="int" operation="+" default="0"/> 
+            </propertyfile> 
+            <property file="build.properties"/> 
+            <echo message="Build number is ${version.revision}"/> 
+            <echo message="Healthcheck Version is ${version.major}.${version.minor}.${version.revision}"/> 
+        </target> 
+      
+</project>
