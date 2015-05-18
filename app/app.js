@@ -6,6 +6,7 @@
        'yurlAnimations',
        'yurlServices',
        'yurlControllers',
+       'yurlDirectives',
        'ui.bootstrap'
        ]);
 
