@@ -9,14 +9,14 @@ class PWControllerLink extends PWController{
         
         $user = UserHelper::get_current_user()->user;
         $run = $this->model->list_links_for_user($user);
-        $this->output_json($run);
+        output_json($run);
     }
     
     public function delete($id){
         $this->model->delete($id);
         $retval = new stdClass();
         $retval->status = "ok";
-        $this->output_json($retval);
+        output_json($retval);
     }
 
     
@@ -43,13 +43,7 @@ class PWControllerLink extends PWController{
         }
     }
     
-
-    private function output_json($data){
-        header('Content-type: application/json');
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST');
-        echo json_encode($data);
-    }
+   
     
 }
 

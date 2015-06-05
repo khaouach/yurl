@@ -6,7 +6,9 @@ class PWModelCategory{
         
         $sqlCat = sprintf("select c.* from categories c where c.username = '%s'", $username);
         $categories = Database::inst()->loadObjectList($sqlCat);
-                
+               
+       
+        
         return $categories;
     }
     

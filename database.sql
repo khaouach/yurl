@@ -43,7 +43,9 @@ CREATE TABLE IF NOT EXISTS `links` (
   `name` varchar(60) NOT NULL,
   `url` varchar(512) NOT NULL,
   `memo` text NOT NULL,
-  `username` varchar(8) NOT NULL,
+  `username` varchar(250) NOT NULL,
+  `url_username` text NOT NULL,
+  `url_password` text NOT NULL,
   `last_update` datetime NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 

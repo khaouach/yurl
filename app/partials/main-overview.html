@@ -1,11 +1,27 @@
 <div id="navbar" class="navbar-collapse collapse navbar-fixed-top">
     <form class="navbar-form navbar-right">
-        <div class="input-group">
-            <input ng-model="query1" class="form-control vBottomOffset1"  placeholder="Search links">
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-primary pull-right" ng-click="resetQuery1()" >Reset</button>
-            </span>
+        <div class="col-md-8 col-sm-8">
+
+
+            <div class="input-group">
+                <input ng-model="query1" class="form-control vBottomOffset1"  placeholder="Search links">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary pull-right" ng-click="resetQuery1()" >Reset</button>
+                </span>
+            </div>
         </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="input-group">
+
+                <span class="input-group-addon"
+                      popover="Enter a passphrase will allow you to add a username and password. Your data will be encrypted using this passhrase so please use something you will never forget!"
+                      popover-placement="bottom"
+                      ><i class="fa fa-info-circle "></i>
+                </span>
+                <input ng-model="passphrase" type="password" class="form-control" placeholder="Enter your passphrase" title="Passphrase is required to encrypt and decrypt your site credentials" >
+            </div>
+        </div>
+
     </form>
 </div>
 
@@ -13,35 +29,62 @@
 
 
 
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="catItem in links" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{catItem.name}}
-                        <div class="pull-right">
-                            <div class="btn-group btn-group-xs" role="group" >
-                                <button type="button"  class="btn btn-default" ng-click="deleteCategory(catItem)"><i class="fa fa-trash"></i></button>
+    <div class="row">
+        <div class="gridster">
+            <ul>
+
+                <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="catItem in links" id="cat-dialog-{{catItem.id}}" data-row="1" data-col="1" data-sizex="1" data-sizey="1" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{catItem.name}}
+                            <div class="pull-right">
+                                <div class="btn-group btn-group-xs" role="group" >
+                                    <button type="button"  class="btn btn-default" ng-click="minifyCategory(catItem)"><i class="fa fa-minus"></i></button>
+                                    <button type="button"  class="btn btn-default" ng-click="deleteCategory(catItem)"><i class="fa fa-trash"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-body">
-                        <ul  class="list-group">
-                            <li ng-repeat="link in catItem.links | filter:query1" class="list-group-item" ><a href="{{link.url}}" target="#{{link.id}}">{{link.name}}</a>
-                                <div  showonhover class="pull-right"  >
-                                    <div class="btn-group btn-group-xs" role="group"  style="display:none" >
-                                        <button type="button"  class="btn btn-default" ng-click="deleteLink(link)"><i class="fa fa-trash"></i></button>
-                                        <button type="button"  class="btn btn-default" ng-click="editLink(link)"><i class="fa fa-edit"></i></button>
-                                        <button type="button"  class="btn btn-default" ng-click="siteInDialog(link)"><i class="fa fa-desktop"></i></button>
-                                        <a href="{{link.url}}" class="btn btn-default" target="#"><i class="fa fa-globe"></i></a>
+                        <div class="panel-body">
+                            <ul  class="list-group">
+                                <li ng-repeat="link in catItem.links| filter:query1" class="list-group-item" ><a href="{{link.url}}" target="#{{link.id}}">{{link.name}}</a>
+                                    <div  showonhover class="pull-right"  >
+                                        <div class="btn-group btn-group-xs" role="group"  style="display:none" >
+                                            <button type="button"  class="btn btn-default" ng-click="deleteLink(link)"><i class="fa fa-trash"></i></button>
+                                            <button type="button"  class="btn btn-default" ng-click="editLink(link)"><i class="fa fa-edit"></i></button>
+                                            <button type="button"  class="btn btn-default" ng-click="siteInDialog(link)"><i class="fa fa-desktop"></i></button>
+                                            <a href="{{link.url}}" class="btn btn-default" target="#"><i class="fa fa-globe"></i></a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+        </div> <!--end gridster -->
+
+        <!--
+            <div class="col-sm-12 col-md-8 col-lg-6" >
+              <div class="panel panel-default">
+                            <div class="panel-heading">Peoplefinder
+                                <div class="pull-right">
+                                    <div class="btn-group btn-group-xs" role="group" >
+                                        <button type="button"  class="btn btn-default" ng-click="deleteCategory(catItem)"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <iframe src="http://archibusweb.ao.nl.abnamro.com/overlay/MyFms/Loekr/"  width="100%" height="300" frameborder="0" ></iframe>
+                            </div>
+                   </div>
+               </div>
             </div>
+        -->
+    </div> <!-- einde row -->
+
+    <footer class="footer">
+        <div class="">
+            <button class="cat-button" ng-repeat="catItem in links" title="{{catItem.name}}" style="display:none" id="cat-button-{{catItem.id}}" ng-click="showCategory(catItem)">{{catItem.shortName}}</button>
         </div>
-    </div>
-    
+    </footer>
 
     <button type="button" class="add-button text-center" ng-click="addLink()"><i class="fa fa-plus fa-2x"></i></button>
 
@@ -67,28 +110,55 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-default">                
-                    <h4 class="modal-title">Add a new Link</h4>
+                    <h4 class="modal-title">Link Editor</h4>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="category">Category</label>
-                            <select id="category" class="form-control" ng-options="c.name for c in categories" ng-model="link.category" placeholder="Select category" ></select>
+                            <label for="category">Category</label><small class="pull-right">To add a category, click on the plus sign to switch to input field</small>
+                            <div class="input-group">
+                                <select id="category" class="form-control" ng-options="c.name for c in categories" ng-model="link.category" ></select>
+                                <input type="text" id="category-new"  class="form-control" ng-model="newCategoryName" placeholder="Enter new category name" style="display:none">
+                                <span class="input-group-addon" ng-click="toggleCategoryInput()" style="cursor: pointer" >+</span>
+                            </div>
                         </div>
+                        <!--
+                         <div class="form-group">
+                            <label for="type">Link Type</label>
+                            <div class="input-group">
+                                <select id="type" class="form-control" ng-options="c.name for c in types" ng-model="link.type" ></select>
+                                
+                            </div>
+                        </div>
+                        -->
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name" placeholder="Enter Link name" ng-model="link.name">
                         </div>
                         <div class="form-group">
                             <label for="url">Url</label>
-                             <div class="input-group">
-                            <input type="text" class="form-control" id="url" placeholder="Enter url" ng-model="link.url">
-                            <span class="input-group-btn">
-                                <a href="{{link.url}}" class="btn btn-default" target="#"><i class="fa fa-globe"></i></a>
-        
-                            </span>
-                             </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="url" placeholder="Enter url" ng-model="link.url">
+                                <span class="input-group-btn">
+                                    <a href="{{link.url}}" class="btn btn-default" target="#"><i class="fa fa-globe"></i></a>
+
+                                </span>
+                            </div>
                         </div>
+                        <div class="container-fluid">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="username" placeholder="Enter username for this site" ng-model="link.url_username_dec">                                
+                            </div>
+                            <div class="col-md-6">                                
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Enter password for this site" ng-model="link.url_password_dec"> 
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" onclick="togglePassword()"><i class="fa fa-eye-slash"></i></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
                         <div class="form-group">
                             <label for="memo">Memo</label>
                             <textarea  class="form-control" id="memo" placeholder="Add a memo" rows="12" ng-model="link.memo"></textarea>
@@ -105,8 +175,4 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <script>
-        $(function () {
-           $("#category").select2({tags: true});
-        });
-    </script>
+

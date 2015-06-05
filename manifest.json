@@ -1,0 +1,17 @@
+{
+    "name": "Yurl",
+    "description": "your url mangement",
+    "manifest_version": 2,
+    "version": "1",
+    "app": {
+        "launch": {
+            "local_path": "index.html"
+        }
+    },
+    "icons": {
+        "128": "icon_128.png"
+    },
+    "permissions": ["bookmarks", "http://10.49.23.197/yurl/php"],
+    "content_security_policy": "script-src 'self' http://10.49.23.197/yurl/php; object-src 'self'"
+}
+

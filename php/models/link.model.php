@@ -12,6 +12,20 @@ class PWModelLink{
         
         foreach ($links as $link) {
             $cat = $categories[$link->category_id];          
+            
+            
+         
+            $words = explode(" ", $cat->name);
+            $shortName = "";
+            for($i = 0; $i < count($words);$i++){
+                if(strlen($words[$i]) >= 1){
+                    $shortName .=  strtoupper(substr($words[$i], 0, 1));                                       
+                }
+                if($i===1) break;
+            }
+            
+            $cat->shortName = $shortName;
+            
             $cat->links[] = $link;
     
         }

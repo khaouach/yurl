@@ -5,8 +5,8 @@ yurlServices.factory('Links', ['$resource',
     return $resource(rootDataServer, {}, {
             
       listLinks : {
-          method:'GET'
-          , params:{            
+          method: 'JSONP', 
+          params:{            
             'unit': 'link',
             'act': 'list_all'}
           , isArray:true
@@ -37,8 +37,8 @@ yurlServices.factory('Links', ['$resource',
       },
       
       listCategories : {
-          method:'GET'
-          , params:{            
+          method: 'JSONP',           
+          params:{            
             'unit': 'category',
             'act': 'list_all'}
           , isArray:true

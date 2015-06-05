@@ -3,6 +3,10 @@
 class UserHelper {
 
     public static function get_current_user() {
+        
+//        $r = new stdClass();
+//        $r->user = "JO3353";
+//        return $r;
 
         $headers = apache_request_headers();
 

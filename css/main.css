@@ -85,13 +85,45 @@
     border-radius: 50px;
     background: crimson;
     color: white;
-    position: absolute;
-    bottom: 100px;
-    right: 100px;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 1001;
     display: table-cell;
     vertical-align: middle;
         
 }
+
+.cat-button{
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    background: crimson;
+    color: white;
+    position: relative;
+    z-index: 1001;    
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.footer{
+    position: fixed;
+    bottom: 0px;
+    height: 80px;
+    width: 100%;
+    z-index: 1000;
+        
+}
+
 
 .select2-container {
     width: 100% !important;
@@ -101,6 +133,7 @@
 body{
     background-image: url('../images/background1.jpg');
     background-size: cover;
+    margin-bottom: 110px;
 }
 
 .item { width: 25%; min-height: 100px;  background: #ffffff}

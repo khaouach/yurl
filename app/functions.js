@@ -10,6 +10,16 @@ fnSiteInDialog = function (site) {
     $('#site-modal .modal-body').html(html);
     $('#site-modal #remarks').html(site.remarks);
     $('#site-modal').modal('show');
-}
+};
 
 
+var togglePassword = function(){
+    $('#password').prop('type', function(idx, type) {
+        if(type==='text'){
+            return 'password';
+        }else{
+            return 'text';
+        }
+    });
+};
+        
